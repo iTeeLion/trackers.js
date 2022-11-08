@@ -2,12 +2,12 @@
  *  Settings
  */
 
-var tjs_yandex_tid = 00000000;
+var tjs_yandex_tid = 43856024;
 
-var tjs_debug = true;
+var tjs_debug = false;
 var tjs_info = true;
 
-var tjs_google = true;
+var tjs_google = false;
 var tjs_yandex = true;
 var tjs_vk = false;
 
@@ -15,48 +15,69 @@ var tjs_google_ecom = false;
 var tjs_yandex_ecom = true;
 
 /*
+ *  CUSTOM
+ */
+
+function tjs_prepare_products(){
+    let products = [];
+    $('.card-body .maincart').each(function(i){
+        $item = $(this);
+        product = {};
+        product.id = 'ToDo SELECTOR';
+        product.name = 'ToDo SELECTOR';
+        product.quantity = 'ToDo SELECTOR';
+        product.price = 'ToDo SELECTOR';
+        if(tjs_debug){
+            console.log(prod);
+        }
+        products.push(product);
+    });
+    return products;
+}
+
+/*
  *  Functions
  */
 
-function tracker_add_to_cart() {
+function tjs_add_to_cart() {
     if (tjs_info) {
-        console.info('tracker_add_to_cart');
+        console.info('tjs_add_to_cart');
     }
     if (tjs_google) {
         gtag('event', 'add_to_cart', {'event_category': 'buttons', 'event_action': 'click-add_to_cart'});
     }
     if (tjs_yandex) {
-        tracker_ya_reachgoal('add_to_cart');
+        tjs_ya_reachgoal('add_to_cart');
     }
     if (tjs_vk) {
         VK.Goal('add_to_cart');
     }
 }
 
-function tracker_purchase() {
+function tjs_purchase() {
     if (tjs_info) {
-        console.info('tracker_purchase');
+        console.info('tjs_purchase');
     }
     if (tjs_google) {
         gtag('event', 'purchase', {'event_category': 'buttons', 'event_action': 'click-purchase'});
     }
     if (tjs_yandex) {
-        tracker_ya_reachgoal('purchase');
+        tjs_ya_reachgoal('purchase');
     }
     if (tjs_vk) {
         VK.Goal('purchase');
     }
 }
 
-function tracker_contact() {
+function tjs_contact() {
     if (tjs_info) {
-        console.info('tracker_contact');
+        console.info('tjs_contact');
     }
     if (tjs_google) {
         gtag('event', 'contact', {'event_category': 'buttons', 'event_action': 'click-contact'});
     }
     if (tjs_yandex) {
-        tracker_ya_reachgoal('contact');
+        tjs_ya_reachgoal('contact');
     }
     if (tjs_vk) {
         VK.Goal('contact');
@@ -64,10 +85,10 @@ function tracker_contact() {
 }
 
 // products = [{"id": 123, "name": "prod", "quantity": 123, "price": 123}]
-function tracker_ecom_purchase(products, orderNameSet = false) {
+function tjs_ecom_purchase(products, orderNameSet = false) {
     if (tjs_google_ecom || tjs_yandex_ecom) {
         if (tjs_info) {
-            console.info('tracker_ecom_purchase');
+            console.info('tjs_ecom_purchase');
         }
 
         // Prepare vars
@@ -100,7 +121,7 @@ function tracker_ecom_purchase(products, orderNameSet = false) {
 
         // Debug
         if (tjs_debug) {
-            console.log('tracker_ecom_purchase - res:'.res);
+            console.log('tjs_ecom_purchase - res:'.res);
             console.log(products);
         }
     }
@@ -120,22 +141,22 @@ window.onload = function () {
  *  Helpers
  */
 
-function tracker_ya_reachgoal(goal) {
+function tjs_ya_reachgoal(goal) {
     ym(tjs_yandex_tid, 'reachGoal', goal);
 }
 
-function tracker_toStr(value){
+function tjs_toStr(value){
     return String(value.trim());
 }
 
-function tracker_toNum(value) {
+function tjs_toNum(value) {
     return value.trim().replace(/\s/g, '');
 }
 
-function tracker_toInt(value) {
-    return parseInt(tracker_toNum(value));
+function tjs_toInt(value) {
+    return parseInt(tjs_toNum(value));
 }
 
-function tracker_toFloat(value) {
-    return parseFloat(tracker_toNum(value));
+function tjs_toFloat(value) {
+    return parseFloat(tjs_toNum(value));
 }
