@@ -96,8 +96,7 @@ function tjs_ecom_purchase(products, orderNameSet = false) {
 
         // Prepare vars
         let date = new Date();
-        let dateStr = date.getDay() + "." + date.getMonth() + "." + date.getYear() + "_" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-        let orderName = "ORDER_" + dateStr + "_" + Date.now();
+        let orderName = "ORDER_" + date.toISOString() + "_" + Math.floor(Math.random() * 1000);
         if(orderNameSet){
             orderName = orderNameSet;
         }
