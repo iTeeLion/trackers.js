@@ -23,7 +23,7 @@ function tjs_prepare_products(){
         console.info('tjs_prepare_products');
     }
     let products = [];
-    $('.card-body .maincart').each(function(i){
+    $('ToDo SELECTOR').each(function(i){
         $item = $(this);
         product = {};
         product.id = 'ToDo SELECTOR';
