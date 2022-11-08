@@ -2,7 +2,7 @@
  *  Settings
  */
 
-var tjs_yandex_tid = 43856024;
+var tjs_yandex_tid = 00000000;
 
 var tjs_debug = false;
 var tjs_info = true;
@@ -19,6 +19,9 @@ var tjs_yandex_ecom = true;
  */
 
 function tjs_prepare_products(){
+    if (tjs_info) {
+        console.info('tjs_prepare_products');
+    }
     let products = [];
     $('.card-body .maincart').each(function(i){
         $item = $(this);
@@ -94,10 +97,9 @@ function tjs_ecom_purchase(products, orderNameSet = false) {
         // Prepare vars
         let date = new Date();
         let dateStr = date.getDay() + "." + date.getMonth() + "." + date.getYear() + "_" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        let orderName = "ORDER_" + dateStr + "_" + Date.now();
         if(orderNameSet){
-            let orderName = orderNameSet;
-        }else{
-            let orderName = "ORDER_" + dateStr + "_" + Date.now();
+            orderName = orderNameSet;
         }
 
         // Send data
@@ -132,6 +134,7 @@ function tjs_ecom_purchase(products, orderNameSet = false) {
  */
 
 window.onload = function () {
+    window.dataLayer = window.dataLayer || [];
     if (tjs_debug) {
         console.log('tracker.js loaded');
     }
