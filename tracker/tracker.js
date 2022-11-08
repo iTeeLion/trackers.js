@@ -2,6 +2,8 @@
  *  Settings
  */
 
+var tjs_yandex_tid = 00000000;
+
 var tjs_debug = true;
 var tjs_info = true;
 
@@ -11,8 +13,6 @@ var tjs_vk = false;
 
 var tjs_google_ecom = false;
 var tjs_yandex_ecom = true;
-
-var tjs_yandex_tid = 000000;
 
 /*
  *  Functions
